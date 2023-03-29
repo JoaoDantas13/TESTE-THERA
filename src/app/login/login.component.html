@@ -1,0 +1,46 @@
+<div class="geral">
+  <div class="logo">
+    <img src="../../assets/img/Logo.svg" alt="" />
+  </div>
+  <div class="login-container">
+    <form [formGroup]="loginDados">
+      <div class="form-group">
+        <div>
+          <img src="../../assets/img/usuario.svg" alt="" />
+        </div>
+        <input
+          type="text"
+          id="username"
+          name="username"
+          formControlName="userID"
+          placeholder="Usuário"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <div>
+          <img src="../../assets/img/senha.svg" alt="" />
+        </div>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          formControlName="accessKey"
+          required
+          placeholder="Senha"
+        />
+      </div>
+      <div class="button-div">
+        <button
+          type="submit"
+          class="btn btn-primary"
+          (click)="login()"
+          [disabled]="!loginDados.valid"
+        >
+          <span class="loader" *ngIf="loading"></span>
+          <span [ngClass]="loading == true ? 'noneText' : ''">LOGIN</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
