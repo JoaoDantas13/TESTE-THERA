@@ -19,7 +19,10 @@ import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatIconModule } from '@angular/material/icon';
 
+
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 
 @NgModule({
   declarations: [
@@ -38,8 +41,11 @@ import { MatInputModule } from '@angular/material/input';
     MatPaginatorModule,
     MatFormFieldModule,
     MatInputModule,
+    SweetAlert2Module,
     ToastrModule.forRoot(),
-    MatSortModule
+    SweetAlert2Module.forRoot(),
+    MatSortModule,
+    MatIconModule
   ],
   providers: [ApiService, AuthGuardService],
   bootstrap: [AppComponent]

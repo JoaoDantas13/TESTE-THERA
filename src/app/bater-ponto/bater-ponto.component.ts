@@ -3,6 +3,8 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ApiService } from '../service/api.service';
+import { ITimeSheet } from '../interface/timesheet.interface';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -11,7 +13,7 @@ import { ApiService } from '../service/api.service';
   styleUrls: ['./bater-ponto.component.css']
 })
 export class BaterPontoComponent implements OnInit {
-  displayedColumns: string[] = ['Id', 'DATA', 'HORA INÍCIO', 'ALMOÇO INÍCIO', 'ALMOÇO FIM', 'HORA FIM'];
+  displayedColumns: string[] = ['Id', 'DATA', 'HORA INÍCIO', 'ALMOÇO INÍCIO', 'ALMOÇO FIM', 'HORA FIM', 'AÇÕES'];
   dataSource!: MatTableDataSource<any>
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -27,7 +29,7 @@ export class BaterPontoComponent implements OnInit {
   id!: any;
 
 
-  constructor(private AuthGuardService: ApiService) { }
+  constructor(private AuthGuardService: ApiService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.usuario = localStorage.getItem('user');
@@ -111,6 +113,15 @@ export class BaterPontoComponent implements OnInit {
       this.getTimeSheet();
     }))
     this.loadingFui = false;
+  }
+
+  deletar(time: ITimeSheet): void {
+    this.AuthGuardService.deleteTimeSheet(time.id).subscribe((retorno) => {
+      this.toastr.success(`Registro ${time.id} Excluído com Sucesso!`, 'Tudo certo!', {
+        timeOut: 3000,
+      });
+      this.getTimeSheet();
+    })
   }
 
   //Função Filtro da tabela
