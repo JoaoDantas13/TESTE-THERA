@@ -107,3 +107,14 @@ button:hover {
 .noneText {
   display: none;
 }
+
+.btn-delet {
+  background-color: rgb(220, 59, 59);
+  border: transparent;
+  width: 20%;
+  display: flex;
+  justify-content: center;
+  line-height: c;
+  align-items: center;
+  margin: 5px;
+}

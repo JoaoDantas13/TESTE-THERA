@@ -62,6 +62,18 @@ export class ApiService {
       map(retorno => retorno));
   }
 
+  deleteTimeSheet(id: number): Observable<any> {
+    const token = localStorage.getItem('token');
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      })
+    };
+    return this.http.delete<any>(`${this.API}/Timesheet/${id}`, httpOptions).pipe(
+      map(retorno => retorno));
+  }
+
   //Função verifica Authentication para rotas guard
   isAuthenticated() {
     return (localStorage.getItem('token') !== null ? true : false)
